@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Contica AB",
+  "classifications": [
+    "Azure Functions",
+    ".NET 10",
+    "Isolated Worker",
+    "Template"
+  ],
+  "identity": "Contica.FunctionApp.Template",
+  "name": "Contica Azure Function App",
+  "shortName": "contica-func",
+  "description": "A .NET 10 Azure Functions (isolated worker) solution template with company-wide coding standards enforced via .editorconfig.",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sourceName": "Template",
+  "preferNameDirectory": true,
+  "defaultName": "MyFunctionApp",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/**",
+            "**/bin/**",
+            "**/obj/**",
+            "**/*.user"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net10.0",
+          "description": ".NET 10"
+        }
+      ],
+      "defaultValue": "net10.0",
+      "replaces": "net10.0"
+    }
+  }
+}
