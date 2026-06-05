@@ -6,8 +6,6 @@
     "Cloud"
   ],
   "identity": "Contica.FunctionApp.Template",
-  "groupIdentity": "Contica.FunctionApp",
-  "precedence": 100,
   "name": "Contica Template - Azure Function App",
   "shortName": "contica-func",
   "description": "A .NET 10 isolated-process Azure Function App following Contica standards.",
@@ -18,37 +16,13 @@
   "sourceName": "ProjectName",
   "preferNameDirectory": true,
   "defaultName": "ConticaFunctionApp",
-  "icons": {
-    "default": "icon.png"
-  },
+  "icon": "icon.png",
   "constraints": {
     "sdk-version": {
       "type": "sdk-version",
-      "args": "10.0.0"
+      "args": "10.*"
     }
   },
-  "primaryOutputs": [
-    {
-      "path": "src/ProjectName-FunctionApp/Functions/TimeFunction.cs",
-      "condition": "(HttpTrigger)"
-    },
-    {
-      "path": "src/ProjectName-FunctionApp/Functions/BlobProcessorFunction.cs",
-      "condition": "(BlobTrigger && !HttpTrigger)"
-    },
-    {
-      "path": "src/ProjectName-FunctionApp/Functions/ServiceBusMessageFunction.cs",
-      "condition": "(ServiceBusTrigger && !HttpTrigger && !BlobTrigger)"
-    },
-    {
-      "path": "src/ProjectName-FunctionApp/Functions/ScheduledTaskFunction.cs",
-      "condition": "(TimerTrigger && !HttpTrigger && !BlobTrigger && !ServiceBusTrigger)"
-    },
-    {
-      "path": "src/ProjectName-FunctionApp/Functions/QueueMessageFunction.cs",
-      "condition": "(QueueTrigger && !HttpTrigger && !BlobTrigger && !ServiceBusTrigger && !TimerTrigger)"
-    }
-  ],
   "symbols": {
     "HttpTrigger": {
       "type": "parameter",
