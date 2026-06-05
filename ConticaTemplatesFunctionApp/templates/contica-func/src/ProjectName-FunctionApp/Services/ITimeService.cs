@@ -11,5 +11,5 @@ public interface ITimeService
     /// Gets the current time information.
     /// </summary>
     /// <returns>A task that represents the asynchronous operation, containing the time response.</returns>
-    Task<TimeResponse> GetCurrentTimeAsync();
+    public Task<TimeResponse> GetCurrentTimeAsync();
 }

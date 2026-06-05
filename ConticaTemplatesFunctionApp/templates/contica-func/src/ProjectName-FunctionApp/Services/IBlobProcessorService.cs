@@ -13,5 +13,5 @@ public interface IBlobProcessorService
     /// <param name="blobName">The name of the blob.</param>
     /// <param name="stream">The blob content stream.</param>
     /// <returns>A task that represents the asynchronous operation, containing the processing result.</returns>
-    Task<BlobProcessingResult> ProcessBlobAsync(string blobName, Stream stream);
+    public Task<BlobProcessingResult> ProcessBlobAsync(string blobName, Stream stream);
 }

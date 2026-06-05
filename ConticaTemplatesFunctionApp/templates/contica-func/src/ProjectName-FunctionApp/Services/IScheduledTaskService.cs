@@ -11,5 +11,5 @@ public interface IScheduledTaskService
     /// Executes the scheduled task.
     /// </summary>
     /// <returns>A task that represents the asynchronous operation, containing the execution result.</returns>
-    Task<ScheduledTaskResult> ExecuteAsync();
+    public Task<ScheduledTaskResult> ExecuteAsync();
 }

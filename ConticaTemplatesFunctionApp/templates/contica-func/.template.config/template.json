@@ -3,12 +3,10 @@
   "author": "Contica",
   "classifications": [
     "Azure Functions",
-    "Cloud",
-    "Service",
-    "Web"
+    "Cloud"
   ],
   "identity": "Contica.FunctionApp.Template",
-  "name": "Contica Azure Function App",
+  "name": "Contica Template - Azure Function App",
   "shortName": "contica-func",
   "description": "A .NET 10 isolated-process Azure Function App following Contica standards.",
   "tags": {

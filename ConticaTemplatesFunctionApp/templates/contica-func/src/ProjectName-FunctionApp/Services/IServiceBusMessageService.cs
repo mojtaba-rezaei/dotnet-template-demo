@@ -13,5 +13,5 @@ public interface IServiceBusMessageService
     /// <param name="messageBody">The message body content.</param>
     /// <param name="messageId">The message identifier.</param>
     /// <returns>A task that represents the asynchronous operation, containing the processing result.</returns>
-    Task<ServiceBusMessageResult> ProcessMessageAsync(string messageBody, string messageId);
+    public Task<ServiceBusMessageResult> ProcessMessageAsync(string messageBody, string messageId);
 }

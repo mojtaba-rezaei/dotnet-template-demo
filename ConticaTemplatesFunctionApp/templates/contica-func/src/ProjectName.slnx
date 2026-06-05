@@ -1,8 +1,8 @@
 <Solution>
-  <Folder Name="src">
+  <Folder Name="/src/">
     <Project Path="ProjectName-FunctionApp\ProjectName-FunctionApp.csproj" />
   </Folder>
-  <Folder Name="tests">
+  <Folder Name="/tests/">
     <Project Path="..\tests\ProjectName.FunctionApp.Tests\ProjectName.FunctionApp.Tests.csproj" />
   </Folder>
 </Solution>
