@@ -8,10 +8,15 @@
     <Title>Contica Azure Function App Template</Title>
     <Authors>Contica</Authors>
     <Description>A dotnet new template for creating .NET 10 isolated-process Azure Function Apps following Contica standards.</Description>
-    <PackageTags>dotnet-new;templates;azure;functions;contica</PackageTags>
-    <PackageProjectUrl>https://github.com/contica/templates</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>dotnet-new;templates;azure;functions;contica;isolated-worker</PackageTags>
+    <PackageProjectUrl>https://github.com/Contica-AB</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Contica-AB/contica-integration-sdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © Contica AB 2026</Copyright>
+    <Company>Contica AB</Company>
+    <PackageReleaseNotes>Initial release with HTTP, Blob, ServiceBus, Timer, and Queue triggers.</PackageReleaseNotes>
     
     <TargetFramework>net10.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
@@ -25,6 +30,7 @@
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
     <None Include="..\README.md" Pack="true" PackagePath="\" Condition="Exists('..\README.md')" />
+    <None Include="icon.png" Pack="true" PackagePath="\" Condition="Exists('icon.png')" />
   </ItemGroup>
 
 </Project>

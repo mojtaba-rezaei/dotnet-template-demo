@@ -6,6 +6,8 @@
     "Cloud"
   ],
   "identity": "Contica.FunctionApp.Template",
+  "groupIdentity": "Contica.FunctionApp",
+  "precedence": 100,
   "name": "Contica Template - Azure Function App",
   "shortName": "contica-func",
   "description": "A .NET 10 isolated-process Azure Function App following Contica standards.",
@@ -16,6 +18,37 @@
   "sourceName": "ProjectName",
   "preferNameDirectory": true,
   "defaultName": "ConticaFunctionApp",
+  "icons": {
+    "default": "icon.png"
+  },
+  "constraints": {
+    "sdk-version": {
+      "type": "sdk-version",
+      "args": "10.0.0"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "src/ProjectName-FunctionApp/Functions/TimeFunction.cs",
+      "condition": "(HttpTrigger)"
+    },
+    {
+      "path": "src/ProjectName-FunctionApp/Functions/BlobProcessorFunction.cs",
+      "condition": "(BlobTrigger && !HttpTrigger)"
+    },
+    {
+      "path": "src/ProjectName-FunctionApp/Functions/ServiceBusMessageFunction.cs",
+      "condition": "(ServiceBusTrigger && !HttpTrigger && !BlobTrigger)"
+    },
+    {
+      "path": "src/ProjectName-FunctionApp/Functions/ScheduledTaskFunction.cs",
+      "condition": "(TimerTrigger && !HttpTrigger && !BlobTrigger && !ServiceBusTrigger)"
+    },
+    {
+      "path": "src/ProjectName-FunctionApp/Functions/QueueMessageFunction.cs",
+      "condition": "(QueueTrigger && !HttpTrigger && !BlobTrigger && !ServiceBusTrigger && !TimerTrigger)"
+    }
+  ],
   "symbols": {
     "HttpTrigger": {
       "type": "parameter",
@@ -50,6 +83,22 @@
     "AnyTrigger": {
       "type": "computed",
       "value": "(HttpTrigger || BlobTrigger || ServiceBusTrigger || TimerTrigger || QueueTrigger)"
+    },
+    "IncludeSolution": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include solution file (.slnx). Set to false when adding to an existing solution."
+    },
+    "IncludeTests": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include test project. Set to false to exclude tests."
+    },
+    "StandaloneProject": {
+      "type": "computed",
+      "value": "(!IncludeSolution && !IncludeTests)"
     }
   },
   "sources": [
@@ -115,6 +164,30 @@
             "src/ProjectName-FunctionApp/Models/QueueMessageResult.cs",
             "tests/ProjectName.FunctionApp.Tests/Unit/QueueMessageFunctionTests.cs",
             "tests/ProjectName.FunctionApp.Tests/Unit/QueueMessageServiceTests.cs"
+          ]
+        },
+        {
+          "condition": "(!IncludeSolution)",
+          "exclude": [
+            "src/ProjectName.slnx"
+          ]
+        },
+        {
+          "condition": "(!IncludeTests)",
+          "exclude": [
+            "tests/**/*"
+          ]
+        },
+        {
+          "condition": "(StandaloneProject)",
+          "exclude": [
+            "src/.editorconfig"
+          ]
+        },
+        {
+          "condition": "(!StandaloneProject)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/.editorconfig"
           ]
         }
       ]
