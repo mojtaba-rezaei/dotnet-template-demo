@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Contica",
+  "classifications": [
+    "Azure Functions",
+    "Cloud",
+    "Service",
+    "Web"
+  ],
+  "identity": "Contica.FunctionApp.Template",
+  "name": "Contica Azure Function App",
+  "shortName": "contica-func",
+  "description": "A .NET 10 isolated-process Azure Function App following Contica standards.",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "ProjectName",
+  "preferNameDirectory": true,
+  "defaultName": "ConticaFunctionApp",
+  "symbols": {
+    "HttpTrigger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Include HTTP trigger function (GET /api/time)."
+    },
+    "BlobTrigger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Blob trigger function."
+    },
+    "ServiceBusTrigger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Service Bus trigger function."
+    },
+    "TimerTrigger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Timer trigger function."
+    },
+    "QueueTrigger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Include Queue trigger function."
+    },
+    "AnyTrigger": {
+      "type": "computed",
+      "value": "(HttpTrigger || BlobTrigger || ServiceBusTrigger || TimerTrigger || QueueTrigger)"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!AnyTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/**/*",
+            "tests/**/*"
+          ]
+        },
+        {
+          "condition": "(!HttpTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/Functions/TimeFunction.cs",
+            "src/ProjectName-FunctionApp/Services/ITimeService.cs",
+            "src/ProjectName-FunctionApp/Services/TimeService.cs",
+            "src/ProjectName-FunctionApp/Models/TimeResponse.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/TimeFunctionTests.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/TimeServiceTests.cs"
+          ]
+        },
+        {
+          "condition": "(!BlobTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/Functions/BlobProcessorFunction.cs",
+            "src/ProjectName-FunctionApp/Services/IBlobProcessorService.cs",
+            "src/ProjectName-FunctionApp/Services/BlobProcessorService.cs",
+            "src/ProjectName-FunctionApp/Models/BlobProcessingResult.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/BlobProcessorFunctionTests.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/BlobProcessorServiceTests.cs"
+          ]
+        },
+        {
+          "condition": "(!ServiceBusTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/Functions/ServiceBusMessageFunction.cs",
+            "src/ProjectName-FunctionApp/Services/IServiceBusMessageService.cs",
+            "src/ProjectName-FunctionApp/Services/ServiceBusMessageService.cs",
+            "src/ProjectName-FunctionApp/Models/ServiceBusMessageResult.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/ServiceBusMessageFunctionTests.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/ServiceBusMessageServiceTests.cs"
+          ]
+        },
+        {
+          "condition": "(!TimerTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/Functions/ScheduledTaskFunction.cs",
+            "src/ProjectName-FunctionApp/Services/IScheduledTaskService.cs",
+            "src/ProjectName-FunctionApp/Services/ScheduledTaskService.cs",
+            "src/ProjectName-FunctionApp/Models/ScheduledTaskResult.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/ScheduledTaskFunctionTests.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/ScheduledTaskServiceTests.cs"
+          ]
+        },
+        {
+          "condition": "(!QueueTrigger)",
+          "exclude": [
+            "src/ProjectName-FunctionApp/Functions/QueueMessageFunction.cs",
+            "src/ProjectName-FunctionApp/Services/IQueueMessageService.cs",
+            "src/ProjectName-FunctionApp/Services/QueueMessageService.cs",
+            "src/ProjectName-FunctionApp/Models/QueueMessageResult.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/QueueMessageFunctionTests.cs",
+            "tests/ProjectName.FunctionApp.Tests/Unit/QueueMessageServiceTests.cs"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "condition": "(AnyTrigger)",
+      "description": "Restore NuGet packages",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}
