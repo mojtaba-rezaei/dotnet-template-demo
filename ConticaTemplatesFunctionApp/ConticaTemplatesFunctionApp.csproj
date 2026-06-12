@@ -31,4 +31,8 @@
     <None Include="..\README.md" Pack="true" PackagePath="\" Condition="Exists('..\README.md')" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="templates\contica-func\.template.config\icon.png" />
+  </ItemGroup>
+
 </Project>
