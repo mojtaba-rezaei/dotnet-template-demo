@@ -11,7 +11,7 @@
     <PackageTags>dotnet-new;templates;azure;functions;contica;isolated-worker</PackageTags>
     <PackageProjectUrl>https://github.com/Contica-AB</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>content/templates/contica-func/.template.config/icon.png</PackageIcon>
+    <PackageIcon>content/.template.config/icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Contica-AB/contica-integration-sdk</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © Contica AB 2026</Copyright>
@@ -26,13 +26,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+    <Content Include=".template.config\**\*;src\**\*;tests\**\*" Exclude="**\bin\**;**\obj\**" />
     <Compile Remove="**\*" />
-    <None Include="..\README.md" Pack="true" PackagePath="\" Condition="Exists('..\README.md')" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="templates\contica-func\.template.config\icon.png" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
