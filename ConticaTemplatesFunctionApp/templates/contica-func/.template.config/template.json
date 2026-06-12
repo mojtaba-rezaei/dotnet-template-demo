@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Contica",
+  "author": "Contica AB",
   "classifications": [
     "Azure Functions",
     "Cloud"
@@ -16,7 +16,6 @@
   "sourceName": "ProjectName",
   "preferNameDirectory": true,
   "defaultName": "ConticaFunctionApp",
-  "icon": "icon.png",
   "constraints": {
     "sdk-version": {
       "type": "sdk-version",
